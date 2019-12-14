@@ -29,7 +29,6 @@ def do_opcode(indexZero, someIntProgram)
       val2 = someIntProgram[pos2]
       sum = val1 + val2
       someIntProgram[pos3] = sum
-      #puts someIntProgram.inspect
     when 2
       #puts "multiply"
       pos1 = someIntProgram[indexZero+1]
@@ -37,10 +36,8 @@ def do_opcode(indexZero, someIntProgram)
       pos3 = someIntProgram[indexZero+3]
       val1 = someIntProgram[pos1]
       val2 = someIntProgram[pos2]
-      #puts "val1 #{val1}, pos1 #{pos1}"
       product = val1 * val2
       someIntProgram[pos3] = product
-      #puts someIntProgram.inspect
     else
       #  puts"Error"
     end
@@ -65,26 +62,26 @@ end
 
 #part 2
 #write a loop that uses the fxns you wrote to try every combination of inputs, stop when index 0 is 19690720
-#map fxn maybe? 
 
-def find_the_nounverb
-    noun = 1
-    verb = 1 
-    #until @intCodeProgram2[0] == 19690720         
-        until noun > 99
-            until verb > 99
-                copy = []
-                copy.replace(@intCodeProgram2)
-                copy[1] = noun
-                copy[2] = verb
-                opcode_loop(copy)
-                puts "#{copy[0]} #{noun} #{verb}"
-                verb += 1
+def find_the_nounverb 
+  noun = 0         
+    until noun > 99
+      verb = 0 
+        until verb > 99 
+            copy = []
+            copy.replace(@intCodeProgram2)
+            copy[1] = noun
+            copy[2] = verb
+            opcode_loop(copy)
+            if copy[0] == 19690720
+                puts puts "#{copy[0]} #{noun} #{verb}"
+                answer = 100*noun + verb
+                puts answer
             end
-            noun += 1
+            verb += 1
         end
-    #end
-
+        noun += 1
+    end
 end
 find_the_nounverb
 
